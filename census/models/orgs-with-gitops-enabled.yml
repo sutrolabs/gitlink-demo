@@ -8,5 +8,5 @@ model:orgs-with-gitops-enabled:
     LEFT JOIN FIVETRAN.GIZA_PRODUCTION_AURORA_PUBLIC.WORKSPACES w ON sc.workspace_id = w.id
     LEFT JOIN CHOLULA.PRODUCTION.ORGANIZATIONS o ON w.organization_id = o.id
     WHERE enabled = 'TRUE'
-  description: Wow! This is so cool!
+  description: I changed the description! Wow!
   connection: data_warehouse:snowflake
