@@ -1,0 +1,10 @@
+---
+model:spells:
+  name: Spells
+  query: |-
+    SELECT 1 AS id, 'Fast Fireball' AS name, 'A lightning fast fireball.' AS description, 3 AS tier
+    UNION ALL SELECT 2, 'Frostmarrow Behemoth', 'Summons a giant undead ice monster.', 5
+    UNION ALL SELECT 3, 'Paw of Thorns', 'Wraps your paw in reinforced thorns.', 1
+    UNION ALL SELECT 4, 'Cage of Pallass', 'A magical shield that surrounds Pallass, defending it from attacks.', 7
+  description: Magic is cool!
+  connection: data_warehouse:snowflake

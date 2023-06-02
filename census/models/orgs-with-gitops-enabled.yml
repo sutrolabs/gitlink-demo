@@ -1,0 +1,12 @@
+---
+model:orgs-with-gitops-enabled:
+  name: Orgs with Gitops Enabled
+  query: |-
+    SELECT  distinct w.organization_id, o.name
+    FROM FIVETRAN.GIZA_PRODUCTION_AURORA_PUBLIC.GITOPS_PROJECTS gp
+    LEFT JOIN FIVETRAN.GIZA_PRODUCTION_AURORA_PUBLIC.SERVICE_CONNECTIONS sc ON gp.service_connection_id = sc.id
+    LEFT JOIN FIVETRAN.GIZA_PRODUCTION_AURORA_PUBLIC.WORKSPACES w ON sc.workspace_id = w.id
+    LEFT JOIN CHOLULA.PRODUCTION.ORGANIZATIONS o ON w.organization_id = o.id
+    WHERE enabled = 'TRUE'
+  description: Wow! This is so cool!
+  connection: data_warehouse:snowflake
