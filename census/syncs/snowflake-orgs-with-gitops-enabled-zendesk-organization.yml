@@ -21,17 +21,17 @@ sync:snowflake-orgs-with-gitops-enabled-zendesk-organization:
   - from:
       type: column
       data:
-        column_name: NAME
-    to:
-      field_name: name
-    preserve_values: false
-  - from:
-      type: column
-      data:
         column_name: ORGANIZATION_ID
     to:
       field_name: external_id
     is_primary_identifier: true
+    preserve_values: false
+  - from:
+      type: column
+      data:
+        column_name: NAME
+    to:
+      field_name: name
     preserve_values: false
   - from:
       type: constant
@@ -43,8 +43,12 @@ sync:snowflake-orgs-with-gitops-enabled-zendesk-organization:
     array_field: true
   operational_settings:
     alerts:
-      failed_run_notifications:
-        enabled: true
-      failed_record_notifications:
-        enabled: true
-        threshold_percent: 75
+    - type: FailureAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options: {}
+    - type: InvalidRecordPercentAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options:
+        threshold: 75

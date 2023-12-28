@@ -22,6 +22,14 @@ sync:snowflake-cholula-publish-salesforce-organizations-sfdc-zendesk-organizatio
   - from:
       type: column
       data:
+        column_name: ID
+    to:
+      field_name: external_id
+    is_primary_identifier: true
+    preserve_values: false
+  - from:
+      type: column
+      data:
         column_name: ACCOUNT_ID
     to:
       field_name: group_id
@@ -36,22 +44,18 @@ sync:snowflake-cholula-publish-salesforce-organizations-sfdc-zendesk-organizatio
   - from:
       type: column
       data:
-        column_name: ID
-    to:
-      field_name: external_id
-    is_primary_identifier: true
-    preserve_values: false
-  - from:
-      type: column
-      data:
         column_name: NAME
     to:
       field_name: name
     preserve_values: false
   operational_settings:
     alerts:
-      failed_run_notifications:
-        enabled: true
-      failed_record_notifications:
-        enabled: true
-        threshold_percent: 75
+    - type: FailureAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options: {}
+    - type: InvalidRecordPercentAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options:
+        threshold: 75
