@@ -12,7 +12,9 @@ sync:snowflake-company-test-service-object:
     type: triggered
     triggers:
       schedule:
-        frequency: never
+        frequency: daily
+        hour: 11
+        minute: 0
   destination:
     connection_identifier: destination:test-service
     object_identifier: object
@@ -43,7 +45,7 @@ sync:snowflake-company-test-service-object:
     to:
       field_name: DOMAIN
     field_type: String
-    follow_source_type: true
+    follow_source_type: false
     generate_field: true
   - from:
       type: column
@@ -52,7 +54,7 @@ sync:snowflake-company-test-service-object:
     to:
       field_name: EMPLOYEE_SIZE
     field_type: Decimal
-    follow_source_type: true
+    follow_source_type: false
     generate_field: true
   operational_settings:
     alerts:
