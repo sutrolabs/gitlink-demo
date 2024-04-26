@@ -1,0 +1,68 @@
+---
+sync:snowflake-product-test-service-object:
+  paused: false
+  behavior:
+    operation: upsert
+  mapping_configuration:
+    sync_all_source_columns:
+      enabled: false
+      mode: add_only
+    name_normalization: match_source_names
+  mode:
+    type: live
+  destination:
+    connection_identifier: destination:test-service
+    object_identifier: object
+  source:
+    type: table
+    connection_identifier: data_warehouse:snowflake
+    table_catalog: PRODUCT_DEMO_DATA
+    table_schema: SRC_PRODUCT_DEMO_DATA
+    table_name: PRODUCT
+  mappings:
+  - from:
+      type: column
+      data:
+        column_name: PRODUCT_ID
+    to:
+      field_name: id
+    is_primary_identifier: true
+  - from:
+      type: column
+      data:
+        column_name: CATEGORY
+    to:
+      field_name: CATEGORY
+    field_type: String
+    follow_source_type: true
+    generate_field: true
+  - from:
+      type: column
+      data:
+        column_name: COLOR
+    to:
+      field_name: COLOR
+    field_type: String
+    follow_source_type: true
+    generate_field: true
+  - from:
+      type: column
+      data:
+        column_name: DATE_FIRST_AVAILABLE
+    to:
+      field_name: DATE_FIRST_AVAILABLE
+    field_type: String
+    follow_source_type: true
+    generate_field: true
+  operational_settings:
+    alerts:
+    - type: FailureAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options: {}
+    - type: InvalidRecordPercentAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options:
+        threshold: 75
+  sync_behavior_family: mapRecords

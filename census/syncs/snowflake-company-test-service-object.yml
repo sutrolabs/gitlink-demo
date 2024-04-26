@@ -1,53 +1,59 @@
 ---
-sync:snowflake-cholula-publish-salesforce-organizations-sfdc-zendesk-organization:
+sync:snowflake-company-test-service-object:
   paused: false
-  label: SFDC Is Not Zendesk
   behavior:
     operation: upsert
   mapping_configuration:
     sync_all_source_columns:
       enabled: false
       mode: add_only
-  triggers:
-    schedule:
-      frequency: never
+    name_normalization: match_source_names
+  mode:
+    type: triggered
+    triggers:
+      schedule:
+        frequency: never
   destination:
-    connection_identifier: destination:zendesk
-    object_identifier: organization
+    connection_identifier: destination:test-service
+    object_identifier: object
   source:
-    type: model
+    type: table
     connection_identifier: data_warehouse:snowflake
-    object_identifier: model:cholula-publish-salesforce-organizations-sfdc
+    table_catalog: PRODUCT_DEMO_DATA
+    table_schema: SRC_PRODUCT_DEMO_DATA
+    table_name: COMPANY
   mappings:
   - from:
       type: column
       data:
-        column_name: ID
+        column_name: COMPANY_ID
     to:
-      field_name: external_id
+      field_name: id
     is_primary_identifier: true
-    preserve_values: false
   - from:
       type: column
       data:
-        column_name: ACCOUNT_ID
+        column_name: COMPANY_NAME
     to:
-      field_name: group_id
-    preserve_values: false
+      field_name: name
   - from:
       type: column
       data:
         column_name: DOMAIN
     to:
-      field_name: domain_names
-    array_field: true
+      field_name: DOMAIN
+    field_type: String
+    follow_source_type: true
+    generate_field: true
   - from:
       type: column
       data:
-        column_name: NAME
+        column_name: EMPLOYEE_SIZE
     to:
-      field_name: name
-    preserve_values: false
+      field_name: EMPLOYEE_SIZE
+    field_type: Decimal
+    follow_source_type: true
+    generate_field: true
   operational_settings:
     alerts:
     - type: FailureAlertConfiguration
@@ -59,3 +65,4 @@ sync:snowflake-cholula-publish-salesforce-organizations-sfdc-zendesk-organizatio
       should_send_recovery: true
       options:
         threshold: 75
+  sync_behavior_family: mapRecords

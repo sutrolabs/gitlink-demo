@@ -50,5 +50,5 @@ model:conversions:
     join cholula.production.hubspot_contacts c on c.id=cnv.contact_id
     qualify 1 = row_number() over (partition by cnv.contact_id, cnv.conversion_name order by conversion_timestamp desc)
     ;
-  description: 
+  description:
   connection: data_warehouse:snowflake
