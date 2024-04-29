@@ -7,9 +7,11 @@ sync:snowflake-orgs-with-gitops-enabled-zendesk-organization:
     sync_all_source_columns:
       enabled: false
       mode: add_only
-  triggers:
-    schedule:
-      frequency: never
+  mode:
+    type: triggered
+    triggers:
+      schedule:
+        frequency: never
   destination:
     connection_identifier: destination:zendesk
     object_identifier: organization
