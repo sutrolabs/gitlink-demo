@@ -1,6 +1,6 @@
 ---
 sync:snowflake-company-test-service-object:
-  paused: false
+  paused: true
   behavior:
     operation: upsert
   mapping_configuration:
