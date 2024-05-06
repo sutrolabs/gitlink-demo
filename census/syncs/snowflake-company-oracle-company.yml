@@ -1,0 +1,49 @@
+---
+sync:snowflake-company-oracle-company:
+  paused: false
+  behavior:
+    operation: update
+  mapping_configuration:
+    sync_all_source_columns:
+      enabled: false
+      mode: add_only
+  mode:
+    type: triggered
+    triggers:
+      schedule:
+        frequency: never
+  destination:
+    connection_identifier: destination:oracle-db
+    object_identifier: USERS:COMPANY
+  source:
+    type: table
+    connection_identifier: data_warehouse:snowflake
+    table_catalog: PRODUCT_DEMO_DATA
+    table_schema: SRC_PRODUCT_DEMO_DATA
+    table_name: COMPANY
+  mappings:
+  - from:
+      type: column
+      data:
+        column_name: COMPANY_ID
+    to:
+      field_name: COMPANY_ID
+    is_primary_identifier: true
+  - from:
+      type: column
+      data:
+        column_name: COMPANY_NAME
+    to:
+      field_name: NAME
+  operational_settings:
+    alerts:
+    - type: FailureAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options: {}
+    - type: InvalidRecordPercentAlertConfiguration
+      send_for: first_time
+      should_send_recovery: true
+      options:
+        threshold: 75
+  sync_behavior_family: mapRecords
