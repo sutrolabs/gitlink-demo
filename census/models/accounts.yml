@@ -1,8 +1,0 @@
----
-model:accounts:
-  name: Accounts
-  query: |-
-    select *
-    from cholula.production.accounts
-  description: A list of accounts.
-  connection: data_warehouse:snowflake
