@@ -16,9 +16,9 @@ sync:snowflake-orgs-with-gitops-enabled-zendesk-organization:
     connection_identifier: destination:zendesk
     object_identifier: organization
   source:
-    type: entity
+    type: dataset
     connection_identifier: data_warehouse:snowflake
-    object_identifier: entity:orgs-with-gitops-enabled
+    object_identifier: dataset:orgs-with-gitops-enabled
   mappings:
   - from:
       type: column
