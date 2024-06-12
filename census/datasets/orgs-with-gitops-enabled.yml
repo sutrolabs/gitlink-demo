@@ -1,5 +1,6 @@
 ---
-model:orgs-with-gitops-enabled:
+dataset:orgs-with-gitops-enabled:
+  type: sql
   name: Orgs with Gitops Enabled
   query: |-
     SELECT  distinct w.organization_id, o.name
@@ -8,5 +9,6 @@ model:orgs-with-gitops-enabled:
     LEFT JOIN FIVETRAN.GIZA_PRODUCTION_AURORA_PUBLIC.WORKSPACES w ON sc.workspace_id = w.id
     LEFT JOIN CHOLULA.PRODUCTION.ORGANIZATIONS o ON w.organization_id = o.id
     WHERE enabled = 'TRUE'
-  description: I changed the description! Wow!
+  description:
+  icon: "emoji:\U0001F3E2"
   connection: data_warehouse:snowflake

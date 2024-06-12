@@ -1,5 +1,6 @@
 ---
-model:conversions:
+dataset:conversions:
+  type: sql
   name: Conversions
   query: |-
     with conversions as (
@@ -51,4 +52,5 @@ model:conversions:
     qualify 1 = row_number() over (partition by cnv.contact_id, cnv.conversion_name order by conversion_timestamp desc)
     ;
   description:
+  icon:
   connection: data_warehouse:snowflake

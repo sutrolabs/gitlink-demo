@@ -1,8 +1,10 @@
 ---
-model:accounts:
+dataset:accounts:
+  type: sql
   name: Accounts
   query: |-
     select *
     from cholula.production.accounts
-  description: A list of accounts.
+  description:
+  icon: "emoji:\U0001F464"
   connection: data_warehouse:snowflake

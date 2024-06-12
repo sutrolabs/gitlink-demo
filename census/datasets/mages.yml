@@ -1,5 +1,6 @@
 ---
-model:mages:
+dataset:mages:
+  type: sql
   name: Mages
   query: |-
     WITH MAGES (ID, NAME, CLASS, LEVEL, SPELL_IDS) AS (
@@ -11,4 +12,5 @@ model:mages:
         UNION SELECT 6, 'Grimalkin', 'Sinew Magus', 55, ARRAY(1)
     ) SELECT * FROM MAGES
   description: ''
+  icon:
   connection: data_warehouse:snowflake
