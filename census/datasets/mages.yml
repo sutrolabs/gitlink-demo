@@ -13,4 +13,4 @@ dataset:mages:
     ) SELECT * FROM MAGES
   description: ''
   icon:
-  connection: data_warehouse:snowflake
+  connection: connection:snowflake

@@ -13,11 +13,11 @@ sync:snowflake-orgs-with-gitops-enabled-zendesk-organization:
       schedule:
         frequency: never
   destination:
-    connection_identifier: destination:zendesk
+    connection_identifier: connection:zendesk
     object_identifier: organization
   source:
     type: dataset
-    connection_identifier: data_warehouse:snowflake
+    connection_identifier: connection:snowflake
     object_identifier: dataset:orgs-with-gitops-enabled
   mappings:
   - from:

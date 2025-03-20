@@ -7,4 +7,4 @@ dataset:accounts:
     from cholula.production.accounts
   description:
   icon: "emoji:\U0001F464"
-  connection: data_warehouse:snowflake
+  connection: connection:snowflake

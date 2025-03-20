@@ -9,4 +9,4 @@ dataset:spells:
     UNION ALL SELECT 4, 'Cage of Pallass', 'A magical shield that surrounds Pallass, defending it from attacks.', 7
   description: Magic is cool!
   icon:
-  connection: data_warehouse:snowflake
+  connection: connection:snowflake

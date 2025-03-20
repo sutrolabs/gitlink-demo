@@ -11,4 +11,4 @@ dataset:orgs-with-gitops-enabled:
     WHERE enabled = 'TRUE'
   description:
   icon: "emoji:\U0001F3E2"
-  connection: data_warehouse:snowflake
+  connection: connection:snowflake
